@@ -5,8 +5,54 @@ import matplotlib.pyplot as plt
 import random
 from torch.optim import LBFGS, Adam
 from tqdm import tqdm
+import numpy as np
+import torch
+import torch.nn as nn
+import matplotlib.pyplot as plt
+import random
+from torch.optim import LBFGS, Adam
+from tqdm import tqdm
 import copy
-from helper import *
+
+def get_data(x_range, y_range, x_num, y_num):
+    x = np.linspace(x_range[0], x_range[1], x_num)
+    t = np.linspace(y_range[0], y_range[1], y_num)
+
+    x_mesh, t_mesh = np.meshgrid(x,t)
+    data = np.concatenate((np.expand_dims(x_mesh, -1), np.expand_dims(t_mesh, -1)), axis=-1)
+    
+    b_left = data[0,:,:] # x = 0
+    b_right = data[-1,:,:] # x = 1
+    b_upper = data[:,-1,:] # t = 1
+    b_lower = data[:,0,:] # t = 0
+    res = data.reshape(-1,2)
+
+    return res, b_left, b_right, b_upper, b_lower
+
+
+def get_n_params(model):
+    pp=0
+    for p in list(model.parameters()):
+        nn_param=1
+        for s in list(p.size()):
+            nn_param = nn_param*s
+        pp += nn_param
+    return pp
+
+
+def make_time_sequence(src, num_step=5, step=1e-4):
+    dim = num_step
+    src = np.repeat(np.expand_dims(src, axis=1), dim, axis=1)  # (N, L, 2)
+    for i in range(num_step):
+        src[:,i,-1] += step*i
+    return src
+
+
+def get_clones(module, N):
+    return nn.ModuleList([copy.deepcopy(module) for i in range(N)])
+
+
+
 
 class WaveAct(nn.Module):
     def __init__(self):
@@ -61,10 +107,17 @@ class Decoder(nn.Module):
     
     
 class FourierFeatures(nn.Module):
-    def __init__(self, in_features, mapping_size=32, init_scale=0.1):
+    def __init__(self, in_features, mapping_size=32):
         super(FourierFeatures, self).__init__()
         # Instead of one scalar, use a vector of scales (one per frequency band)
-        self.scale = nn.Parameter(torch.ones(mapping_size) * init_scale, requires_grad=True)
+        scale_max = 0.5
+        scale_min = 0.01
+        self.scale = nn.Parameter(
+            torch.rand(1, mapping_size) * (scale_max - scale_min)
+            + scale_min,
+            requires_grad=True
+        )
+
         self.B = nn.Parameter(torch.randn(in_features, mapping_size), requires_grad=True)
 
     def forward(self, x):
@@ -73,9 +126,9 @@ class FourierFeatures(nn.Module):
 
 
 class EnhancedEmbedding(nn.Module):
-    def __init__(self, in_features, d_model, mapping_size=32, init_scale=0.1):
+    def __init__(self, in_features, d_model, mapping_size=128,):
         super(EnhancedEmbedding, self).__init__()
-        self.fourier = FourierFeatures(in_features, mapping_size, init_scale)
+        self.fourier = FourierFeatures(in_features, mapping_size)
         # Adjust the linear layer to account for the increased dimensionality (2*mapping_size)
         self.linear = nn.Linear(2 * mapping_size, d_model)
         self.pos_emb = nn.Linear(in_features, d_model)
@@ -114,12 +167,12 @@ class DecoderOnlyPINNsformer(nn.Module):
         output = self.linear_out(d_output)
         return output
 
-class DecoderOnlyPINNsformerFourier(nn.Module):
-    def __init__(self, d_out, d_model, d_hidden, N, heads, init_scale=0.1, mapping_size=32):
-        super(DecoderOnlyPINNsformerFourier, self).__init__()
+class FourierPINNsFormer(nn.Module):
+    def __init__(self, d_out, d_model, d_hidden, N, heads, mapping_size=128):
+        super(FourierPINNsFormer, self).__init__()
 
         # Use the EnhancedEmbedding module which combines Fourier features and a learnable positional embedding.
-        self.embedding = EnhancedEmbedding(in_features=2, d_model=d_model, mapping_size=mapping_size, init_scale=init_scale)
+        self.embedding = EnhancedEmbedding(in_features=2, d_model=d_model, mapping_size=mapping_size)
         self.decoder = Decoder(d_model, N, heads)
         self.linear_out = nn.Sequential(
             nn.Linear(d_model, d_hidden),
