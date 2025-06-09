@@ -168,11 +168,14 @@ class DecoderOnlyPINNsformer(nn.Module):
         return output
 
 class FourierPINNsFormer(nn.Module):
-    def __init__(self, d_out, d_model, d_hidden, N, heads, mapping_size=128):
+    def __init__(self, d_out, d_model, d_hidden, N, heads, mapping_size=32, in_features=2):
         super(FourierPINNsFormer, self).__init__()
+        
+        self.in_features = in_features
+
 
         # Use the EnhancedEmbedding module which combines Fourier features and a learnable positional embedding.
-        self.embedding = EnhancedEmbedding(in_features=2, d_model=d_model, mapping_size=mapping_size)
+        self.embedding = EnhancedEmbedding(in_features=self.in_features, d_model=d_model, mapping_size=mapping_size)
         self.decoder = Decoder(d_model, N, heads)
         self.linear_out = nn.Sequential(
             nn.Linear(d_model, d_hidden),
@@ -182,8 +185,15 @@ class FourierPINNsFormer(nn.Module):
             nn.Linear(d_hidden, d_out)
         )
 
-    def forward(self, x, t):
-        src = torch.cat((x, t), dim=-1)
+    def forward(self, *inputs):
+        src = torch.cat(inputs, dim=-1)
+        # sanity check
+        if src.size(-1) != self.in_features:
+            raise ValueError(
+                f"Expected concatenated inputs to have last-dim={self.in_features}, "
+                f"but got {src.size(-1)}"
+            )
+
         src = self.embedding(src)
         d_output = self.decoder(src, src)
         output = self.linear_out(d_output)
