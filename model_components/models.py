@@ -145,9 +145,9 @@ class DecoderOnlyPINNsformer(nn.Module):
         super(DecoderOnlyPINNsformer, self).__init__()
         
         self.in_features = in_features
-        self.linear_emb = nn.Linear(in_features, d_model)
+        self.linear_emb = nn.Linear(self.in_features, d_model)
         # Simple positional embedding as another linear layer.
-        self.pos_emb = nn.Linear(2, d_model)
+        self.pos_emb = nn.Linear(self.in_features, d_model)
 
         self.decoder = Decoder(d_model, N, heads)
         self.linear_out = nn.Sequential(
@@ -207,35 +207,44 @@ class FourierPINNsFormer(nn.Module):
         output = self.linear_out(d_output)
         return output
     
+# Ripped from PINNsformer github
+class PINNs(nn.Module):
+    def __init__(self, in_dim, hidden_dim, out_dim, num_layer):
+        super(PINNs, self).__init__()
 
-class MLP(nn.Module):
-    def __init__(self, in_dim, hidden_dims, out_dim, activation=nn.Tanh):
-        super().__init__()
         layers = []
-        dims = [in_dim] + hidden_dims
-        for i in range(len(hidden_dims)):
-            layers.append(nn.Linear(dims[i], dims[i+1]))
-            layers.append(activation())
-        layers.append(nn.Linear(dims[-1], out_dim))
-        self.net = nn.Sequential(*layers)
+        for i in range(num_layer-1):
+            if i == 0:
+                layers.append(nn.Linear(in_features=in_dim, out_features=hidden_dim))
+                layers.append(nn.Tanh())
+            else:
+                layers.append(nn.Linear(in_features=hidden_dim, out_features=hidden_dim))
+                layers.append(nn.Tanh())
 
-    def forward(self, x):
-        return self.net(x)
+        layers.append(nn.Linear(in_features=hidden_dim, out_features=out_dim))
 
+        self.linear = nn.Sequential(*layers)
 
+    def forward(self, *inputs):
+        src = torch.cat(inputs, dim=-1)
+        return self.linear(src)
+    
+
+# Wrapper for PINNs with Fourier features
 class FourierPINN(nn.Module):
     def __init__(self,
                  in_features=2,
                  mapping_size=32,
-                 hidden_dims=(128, 128, 128),
+                 hidden_dim=512,
                  out_dim=1,
-                 activation=nn.Tanh):
+                 num_layers=4
+                 ):
         super().__init__()
         self.mapping = FourierFeatures(in_features, mapping_size)
         embed_dim = 2 * mapping_size
-        self.mlp = MLP(embed_dim, list(hidden_dims), out_dim, activation)
+        self.mlp = PINNs(embed_dim, hidden_dim, out_dim, num_layers)
 
-    def forward(self, x, t):
-        inputs = torch.cat((x, t), dim=-1)
+    def forward(self, *inputs):
+        inputs = torch.cat(inputs, dim=-1)
         feats = self.mapping(inputs)
         return self.mlp(feats)
