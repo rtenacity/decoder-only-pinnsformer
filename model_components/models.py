@@ -163,9 +163,9 @@ class PINNs(nn.Module):
         return self.linear(src)
     
 
-class DecoderOnlyPINNsformerSpaceTime2D(nn.Module):
-    def __init__(self, d_out, d_model, d_hidden, N, heads, d_in, mapping_size):
-        super(DecoderOnlyPINNsformerSpaceTime2D, self).__init__()
+class FourierPINNsformer2D(nn.Module):
+    def __init__(self, d_out, d_model, d_hidden, N, heads, d_in, mapping_size, x_range = (1.0, 8.0), y_range = (-2.0, 2.0), t_range = (0.0, 19.9)):
+        super(FourierPINNsformer2D, self).__init__()
 
         self.in_features = d_in
         self.spatial_features = d_in - 1
@@ -188,13 +188,10 @@ class DecoderOnlyPINNsformerSpaceTime2D(nn.Module):
         self.register_buffer('B', torch.randn(self.in_features, mapping_size))
         
         # Define the min and max values for normalization
-        # These values are based on the dataset used in the paper.
-        self.x_min = 1.0
-        self.x_max = 8.0
-        self.y_min = -2.0
-        self.y_max = 2.0
-        self.t_min = 0.0
-        self.t_max = 19.9
+        # These values are based on the dataset used in the paper for the 2D Navier-Stokes equations.
+        self.x_min, self.x_max = x_range
+        self.y_min, self.y_max = y_range
+        self.t_min, self.t_max = t_range
         
 
     def forward(self, x, y, t):
@@ -217,9 +214,9 @@ class DecoderOnlyPINNsformerSpaceTime2D(nn.Module):
     
     
     
-class DecoderOnlyPINNsformerSpaceTime(nn.Module):
-    def __init__(self, d_out, d_model, d_hidden, N, heads, d_in, mapping_size):
-        super(DecoderOnlyPINNsformerSpaceTime, self).__init__()
+class FourierPINNsformer(nn.Module):
+    def __init__(self, d_out, d_model, d_hidden, N, heads, d_in, mapping_size, x_range = (0.0, 2*torch.pi), t_range = (0.0, 1.0)):
+        super(FourierPINNsformer, self).__init__()
 
         self.in_features = d_in
         self.spatial_features = d_in - 1
@@ -241,10 +238,14 @@ class DecoderOnlyPINNsformerSpaceTime(nn.Module):
         # Add a random matrix B that is (in_features x mapping_size), and cannot be learned.
         self.register_buffer('B', torch.randn(self.in_features, mapping_size))
         
+        self.x_min, self.x_max = x_range
+        self.t_min, self.t_max = t_range
+        
 
     def forward(self, x, t):
-        x_norm = x / (2 * torch.pi)
-        t_norm = t / 1.0
+        x_norm = (x - self.x_min) / (self.x_max - self.x_min)
+        t_norm = (t - self.t_min) / (self.t_max - self.t_min)
+    
         spacetime = torch.cat([x_norm, t_norm], dim=-1)
         src = 2 * torch.pi * spacetime @ self.B  # (batch_size, seq_len, mapping_size)
         f = torch.cat([src.sin(), src.cos()], dim=-1)  # (batch, seq_len, 2*mapping_size)

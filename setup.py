@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="model_components",
-    version="0.1.5",
+    version="0.1.6",
     description="Re-usable PDE model components",
     author="Your Name",
     packages=find_packages(),             # finds the model_components package
