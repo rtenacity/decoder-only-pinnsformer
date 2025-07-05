@@ -105,40 +105,6 @@ class Decoder(nn.Module):
             x = self.layers[i](x, e_outputs)
         return self.act(x)
     
-    
-class FourierFeatures(nn.Module):
-    def __init__(self, in_features, mapping_size=32):
-        super(FourierFeatures, self).__init__()
-        # Instead of one scalar, use a vector of scales (one per frequency band)
-        scale_max = 0.5
-        scale_min = 0.01
-        self.scale = nn.Parameter(
-            torch.rand(1, mapping_size) * (scale_max - scale_min)
-            + scale_min,
-            requires_grad=True
-        )
-
-        self.B = nn.Parameter(torch.randn(in_features, mapping_size), requires_grad=True)
-
-    def forward(self, x):
-        x_proj = 2 * torch.pi * x @ (self.B * self.scale)
-        return torch.cat([torch.sin(x_proj), torch.cos(x_proj)], dim=-1)
-
-
-class EnhancedEmbedding(nn.Module):
-    def __init__(self, in_features, d_model, mapping_size=128,):
-        super(EnhancedEmbedding, self).__init__()
-        self.fourier = FourierFeatures(in_features, mapping_size)
-        # Adjust the linear layer to account for the increased dimensionality (2*mapping_size)
-        self.linear = nn.Linear(2 * mapping_size, d_model)
-        self.pos_emb = nn.Linear(in_features, d_model)
-
-    def forward(self, x):
-        fourier_features = self.fourier(x)
-        token_emb = self.linear(fourier_features)
-        pos_emb = self.pos_emb(x)
-        return token_emb + pos_emb
-
 
 class DecoderOnlyPINNsformer(nn.Module):
     def __init__(self, d_out, d_model, d_hidden, N, heads, in_features=2):
@@ -174,39 +140,6 @@ class DecoderOnlyPINNsformer(nn.Module):
         output = self.linear_out(d_output)
         return output
     
-
-class FourierPINNsFormer(nn.Module):
-    def __init__(self, d_out, d_model, d_hidden, N, heads, mapping_size=32, in_features=2):
-        super(FourierPINNsFormer, self).__init__()
-        
-        self.in_features = in_features
-
-
-        # Use the EnhancedEmbedding module which combines Fourier features and a learnable positional embedding.
-        self.embedding = EnhancedEmbedding(in_features=self.in_features, d_model=d_model, mapping_size=mapping_size)
-        self.decoder = Decoder(d_model, N, heads)
-        self.linear_out = nn.Sequential(
-            nn.Linear(d_model, d_hidden),
-            WaveAct(),
-            nn.Linear(d_hidden, d_hidden),
-            WaveAct(),
-            nn.Linear(d_hidden, d_out)
-        )
-
-    def forward(self, *inputs):
-        src = torch.cat(inputs, dim=-1)
-        # sanity check
-        if src.size(-1) != self.in_features:
-            raise ValueError(
-                f"Expected concatenated inputs to have last-dim={self.in_features}, "
-                f"but got {src.size(-1)}"
-            )
-
-        src = self.embedding(src)
-        d_output = self.decoder(src, src)
-        output = self.linear_out(d_output)
-        return output
-    
 # Ripped from PINNsformer github
 class PINNs(nn.Module):
     def __init__(self, in_dim, hidden_dim, out_dim, num_layer):
@@ -230,21 +163,97 @@ class PINNs(nn.Module):
         return self.linear(src)
     
 
-# Wrapper for PINNs with Fourier features
-class FourierPINN(nn.Module):
-    def __init__(self,
-                 in_features=2,
-                 mapping_size=32,
-                 hidden_dim=512,
-                 out_dim=1,
-                 num_layers=4
-                 ):
-        super().__init__()
-        self.mapping = FourierFeatures(in_features, mapping_size)
-        embed_dim = 2 * mapping_size
-        self.mlp = PINNs(embed_dim, hidden_dim, out_dim, num_layers)
+class DecoderOnlyPINNsformerSpaceTime2D(nn.Module):
+    def __init__(self, d_out, d_model, d_hidden, N, heads, d_in, mapping_size):
+        super(DecoderOnlyPINNsformerSpaceTime2D, self).__init__()
 
-    def forward(self, *inputs):
-        inputs = torch.cat(inputs, dim=-1)
-        feats = self.mapping(inputs)
-        return self.mlp(feats)
+        self.in_features = d_in
+        self.spatial_features = d_in - 1
+        self.time_features = 1
+        self.fourier_emb = nn.Linear(2 * mapping_size, d_model)
+        self.time_emb = nn.Linear(self.in_features, d_model)
+        self.test_emb = nn.Linear(self.in_features, d_model)  # For testing purposes, if needed
+        
+
+        self.decoder = Decoder(d_model, N, heads)
+        self.linear_out = nn.Sequential(
+            nn.Linear(d_model, d_hidden),
+            WaveAct(),
+            nn.Linear(d_hidden, d_hidden),
+            WaveAct(),
+            nn.Linear(d_hidden, d_out)
+        )
+        
+        # Add a random matrix B that is (in_features x mapping_size), and cannot be learned.
+        self.register_buffer('B', torch.randn(self.in_features, mapping_size))
+        
+        # Define the min and max values for normalization
+        # These values are based on the dataset used in the paper.
+        self.x_min = 1.0
+        self.x_max = 8.0
+        self.y_min = -2.0
+        self.y_max = 2.0
+        self.t_min = 0.0
+        self.t_max = 19.9
+        
+
+    def forward(self, x, y, t):
+        # Base normalization
+        x_norm = (x - self.x_min) / (self.x_max - self.x_min)
+        y_norm = (y - self.y_min) / (self.y_max - self.y_min)
+        t_norm = (t - self.t_min) / (self.t_max - self.t_min)
+        spacetime = torch.cat([x_norm, y_norm, t_norm], dim=-1)
+        src = 2 * torch.pi * spacetime @ self.B  # (batch_size, seq_len, mapping_size)
+        f = torch.cat([src.sin(), src.cos()], dim=-1)  # (batch, seq_len, 2*mapping_size)
+        token_emb = self.fourier_emb(f)  # (batch_size, seq_len
+        # token_emb = self.test_emb(spacetime)  # For testing purposes, if needed
+        pos_emb = self.time_emb(spacetime)
+
+        out = token_emb + pos_emb
+
+        d_output = self.decoder(out, out)  # decoder attends to input only
+        output = self.linear_out(d_output)
+        return output
+    
+    
+    
+class DecoderOnlyPINNsformerSpaceTime(nn.Module):
+    def __init__(self, d_out, d_model, d_hidden, N, heads, d_in, mapping_size):
+        super(DecoderOnlyPINNsformerSpaceTime, self).__init__()
+
+        self.in_features = d_in
+        self.spatial_features = d_in - 1
+        self.time_features = 1
+        self.fourier_emb = nn.Linear(2 * mapping_size, d_model)
+        self.time_emb = nn.Linear(self.in_features, d_model)
+        self.test_emb = nn.Linear(self.in_features, d_model)  # For testing purposes, if needed
+        
+
+        self.decoder = Decoder(d_model, N, heads)
+        self.linear_out = nn.Sequential(
+            nn.Linear(d_model, d_hidden),
+            WaveAct(),
+            nn.Linear(d_hidden, d_hidden),
+            WaveAct(),
+            nn.Linear(d_hidden, d_out)
+        )
+        
+        # Add a random matrix B that is (in_features x mapping_size), and cannot be learned.
+        self.register_buffer('B', torch.randn(self.in_features, mapping_size))
+        
+
+    def forward(self, x, t):
+        x_norm = x / (2 * torch.pi)
+        t_norm = t / 1.0
+        spacetime = torch.cat([x_norm, t_norm], dim=-1)
+        src = 2 * torch.pi * spacetime @ self.B  # (batch_size, seq_len, mapping_size)
+        f = torch.cat([src.sin(), src.cos()], dim=-1)  # (batch, seq_len, 2*mapping_size)
+        token_emb = self.fourier_emb(f)  # (batch_size, seq_len, d_model)
+        # token_emb = self.test_emb(spacetime)  # For testing purposes, if needed
+        pos_emb = self.time_emb(spacetime)
+
+        out = token_emb + pos_emb
+
+        d_output = self.decoder(out, out)  # decoder attends to input only
+        output = self.linear_out(d_output)
+        return output
