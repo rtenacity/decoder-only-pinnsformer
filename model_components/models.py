@@ -171,8 +171,7 @@ class FourierPINNsformer2D(nn.Module):
         self.spatial_features = d_in - 1
         self.time_features = 1
         self.fourier_emb = nn.Linear(2 * mapping_size, d_model)
-        self.time_emb = nn.Linear(self.in_features, d_model)
-        self.test_emb = nn.Linear(self.in_features, d_model)  # For testing purposes, if needed
+        self.pos_emb = nn.Linear(self.in_features, d_model)
         
 
         self.decoder = Decoder(d_model, N, heads)
@@ -202,11 +201,9 @@ class FourierPINNsformer2D(nn.Module):
         spacetime = torch.cat([x_norm, y_norm, t_norm], dim=-1)
         src = 2 * torch.pi * spacetime @ self.B  # (batch_size, seq_len, mapping_size)
         f = torch.cat([src.sin(), src.cos()], dim=-1)  # (batch, seq_len, 2*mapping_size)
-        token_emb = self.fourier_emb(f)  # (batch_size, seq_len
-        # token_emb = self.test_emb(spacetime)  # For testing purposes, if needed
-        pos_emb = self.time_emb(spacetime)
-
-        out = token_emb + pos_emb
+        emb_f = self.fourier_emb(f)  # (batch_size, seq_len, d_model)
+        emb_p = self.pos_emb(spacetime)
+        out = emb_f + emb_p
 
         d_output = self.decoder(out, out)  # decoder attends to input only
         output = self.linear_out(d_output)
@@ -222,9 +219,7 @@ class FourierPINNsformer(nn.Module):
         self.spatial_features = d_in - 1
         self.time_features = 1
         self.fourier_emb = nn.Linear(2 * mapping_size, d_model)
-        self.time_emb = nn.Linear(self.in_features, d_model)
-        self.test_emb = nn.Linear(self.in_features, d_model)  # For testing purposes, if needed
-        
+        self.pos_emb = nn.Linear(self.in_features, d_model)        
 
         self.decoder = Decoder(d_model, N, heads)
         self.linear_out = nn.Sequential(
@@ -249,11 +244,9 @@ class FourierPINNsformer(nn.Module):
         spacetime = torch.cat([x_norm, t_norm], dim=-1)
         src = 2 * torch.pi * spacetime @ self.B  # (batch_size, seq_len, mapping_size)
         f = torch.cat([src.sin(), src.cos()], dim=-1)  # (batch, seq_len, 2*mapping_size)
-        token_emb = self.fourier_emb(f)  # (batch_size, seq_len, d_model)
-        # token_emb = self.test_emb(spacetime)  # For testing purposes, if needed
-        pos_emb = self.time_emb(spacetime)
-
-        out = token_emb + pos_emb
+        emb_f = self.fourier_emb(f)  # (batch_size, seq_len, d_model)
+        emb_p = self.pos_emb(spacetime)
+        out = emb_f + emb_p
 
         d_output = self.decoder(out, out)  # decoder attends to input only
         output = self.linear_out(d_output)
