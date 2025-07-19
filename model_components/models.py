@@ -251,3 +251,6 @@ class FourierPINNsformer(nn.Module):
         d_output = self.decoder(out, out)  # decoder attends to input only
         output = self.linear_out(d_output)
         return output
+    
+    
+
