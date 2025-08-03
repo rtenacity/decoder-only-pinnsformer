@@ -3,4 +3,6 @@ torch
 matplotlib
 tqdm
 torch
+scipy
+pandas
 
