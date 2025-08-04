@@ -209,10 +209,18 @@ class FourierPINNsformer2D(nn.Module):
         output = self.linear_out(d_output)
         return output
     
-    
+def get_activation_function(name):
+    if name == 'tanh':
+        return nn.Tanh()
+    elif name == 'sigmoid':
+        return nn.Sigmoid()
+    elif name == 'wave_act':
+        return WaveAct()
+    else:
+        raise ValueError(f"Unknown activation function: {name}")
     
 class FourierPINNsformer(nn.Module):
-    def __init__(self, d_out, d_model, d_hidden, N, heads, d_in, mapping_size, x_range = (0.0, 2*torch.pi), t_range = (0.0, 1.0)):
+    def __init__(self, d_out, d_model, d_hidden, N, heads, d_in, mapping_size, x_range = (0.0, 2*torch.pi), t_range = (0.0, 1.0), activation_function='wave_act'):
         super(FourierPINNsformer, self).__init__()
 
         self.in_features = d_in
@@ -224,9 +232,9 @@ class FourierPINNsformer(nn.Module):
         self.decoder = Decoder(d_model, N, heads)
         self.linear_out = nn.Sequential(
             nn.Linear(d_model, d_hidden),
-            WaveAct(),
+            get_activation_function(activation_function),
             nn.Linear(d_hidden, d_hidden),
-            WaveAct(),
+            get_activation_function(activation_function),
             nn.Linear(d_hidden, d_out)
         )
         
