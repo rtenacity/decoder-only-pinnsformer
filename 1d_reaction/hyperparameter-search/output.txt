@@ -14,3 +14,4 @@ nohup: ignoring input
 [I 2025-08-04 23:06:53,095] Trial 11 finished with value: 0.004356151035844843 and parameters: {'d_hidden': 256, 'd_model': 32, 'mapping_size': 16}. Best is trial 7 with value: 0.0017768067426326408.
 [I 2025-08-04 23:10:00,311] Trial 12 finished with value: 0.0019745953981883265 and parameters: {'d_hidden': 256, 'd_model': 32, 'mapping_size': 48}. Best is trial 7 with value: 0.0017768067426326408.
 [I 2025-08-04 23:12:29,547] Trial 13 finished with value: 0.003747904060295003 and parameters: {'d_hidden': 256, 'd_model': 64, 'mapping_size': 64}. Best is trial 7 with value: 0.0017768067426326408.
+[I 2025-08-04 23:17:07,302] Trial 14 finished with value: 0.006241371656706007 and parameters: {'d_hidden': 768, 'd_model': 32, 'mapping_size': 48}. Best is trial 7 with value: 0.0017768067426326408.
