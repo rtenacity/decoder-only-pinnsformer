@@ -57,6 +57,7 @@ D1 = kernel_size
 D2 = len(x_left)
 D3 = len(x_lower)
 
+
 def compute_ntk(J1, J2):
     Ker = torch.matmul(J1, torch.transpose(J2, 0, 1))
     return Ker
@@ -73,9 +74,8 @@ def objective(trial):
 
     # sample hyperparameters
     d_hidden = trial.suggest_categorical('d_hidden', [128, 256, 512, 768])
-    d_model = trial.suggest_int('d_model', 16, 64, step=16)
+    d_model = trial.suggest_categorical('d_model', [16, 32, 64, 128])
     mapping_size = trial.suggest_int('mapping_size', 16, 128, step=16)
-    activation = trial.suggest_categorical('activation', ['tanh', 'sigmoid', 'wave_act'])
 
     # build model
     model = FourierPINNsformer(
@@ -88,7 +88,7 @@ def objective(trial):
         mapping_size=mapping_size,
         x_range=(0.0, 2*torch.pi),
         t_range=(0.0, 1.0),
-        activation_function=activation
+        activation_function='wave_act'
     ).to(device)
 
     # init weights
