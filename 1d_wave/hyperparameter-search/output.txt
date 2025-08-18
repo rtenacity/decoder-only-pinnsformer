@@ -71,3 +71,44 @@ nohup: ignoring input
 [I 2025-08-09 16:08:53,768] Trial 68 finished with value: 0.005812461836835676 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 32}. Best is trial 54 with value: 0.002775160121059759.
 [I 2025-08-09 16:56:45,315] Trial 69 finished with value: 0.002775160121059759 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
 [I 2025-08-09 17:45:32,588] Trial 70 finished with value: 0.010060530974215507 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 16}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-09 18:33:23,402] Trial 71 finished with value: 0.002775160121059759 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-09 19:21:13,706] Trial 72 finished with value: 0.002775160121059759 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-09 20:13:41,908] Trial 73 finished with value: 0.005812461836835676 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 32}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-09 21:01:26,714] Trial 74 finished with value: 0.002775160121059759 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-09 21:49:16,814] Trial 75 finished with value: 0.002775160121059759 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-09 22:41:51,319] Trial 76 finished with value: 0.005812461836835676 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 32}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-09 23:27:04,834] Trial 77 finished with value: 0.005414738651446318 and parameters: {'d_hidden': 512, 'd_model': 32, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 00:12:31,685] Trial 78 finished with value: 0.008262018282135072 and parameters: {'d_hidden': 512, 'd_model': 64, 'mapping_size': 32}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 01:00:22,513] Trial 79 finished with value: 0.002775160121059759 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 01:48:14,906] Trial 80 finished with value: 0.002775160121059759 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 02:36:05,987] Trial 81 finished with value: 0.002775160121059759 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 03:23:58,151] Trial 82 finished with value: 0.002775160121059759 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 04:11:49,749] Trial 83 finished with value: 0.002775160121059759 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 05:05:30,866] Trial 84 finished with value: 0.005156051622117107 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 128}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 05:53:23,018] Trial 85 finished with value: 0.002775160121059759 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 06:35:44,965] Trial 86 finished with value: 0.013915319436485366 and parameters: {'d_hidden': 512, 'd_model': 16, 'mapping_size': 32}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 07:31:03,358] Trial 87 finished with value: 0.013337757727278167 and parameters: {'d_hidden': 768, 'd_model': 128, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 08:18:52,369] Trial 88 finished with value: 0.002775160121059759 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 09:06:43,735] Trial 89 finished with value: 0.002775160121059759 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 09:44:25,802] Trial 90 finished with value: 0.003007872013380085 and parameters: {'d_hidden': 256, 'd_model': 128, 'mapping_size': 32}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 10:32:14,258] Trial 91 finished with value: 0.002775160121059759 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 11:20:05,131] Trial 92 finished with value: 0.002775160121059759 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 12:07:55,905] Trial 93 finished with value: 0.002775160121059759 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 12:55:45,223] Trial 94 finished with value: 0.002775160121059759 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 13:43:32,272] Trial 95 finished with value: 0.002775160121059759 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 14:31:20,986] Trial 96 finished with value: 0.002775160121059759 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 15:11:03,837] Trial 97 finished with value: 0.023933472697058974 and parameters: {'d_hidden': 512, 'd_model': 32, 'mapping_size': 32}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 15:53:21,192] Trial 98 finished with value: 0.005494840121766741 and parameters: {'d_hidden': 512, 'd_model': 64, 'mapping_size': 48}. Best is trial 54 with value: 0.002775160121059759.
+[I 2025-08-10 16:37:43,540] Trial 99 finished with value: 0.0031563537405286594 and parameters: {'d_hidden': 512, 'd_model': 128, 'mapping_size': 64}. Best is trial 54 with value: 0.002775160121059759.
+New smallest L1 error: 0.0185 at trial 0
+New smallest L1 error: 0.0124 at trial 1
+New smallest L1 error: 0.0055 at trial 4
+New smallest L1 error: 0.0035 at trial 5
+New smallest L1 error: 0.0029 at trial 20
+New smallest L1 error: 0.0028 at trial 54
+Best trial:
+  Value: 0.002775160121059759
+  Params:
+    d_hidden: 512
+    d_model: 128
+    mapping_size: 48
