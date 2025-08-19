@@ -1,0 +1,2 @@
+nohup: ignoring input
+[I 2025-08-19 04:53:10,035] A new study created in memory with name: no-name-a9a89f6d-a429-4731-b25e-9ae3bd412f75
