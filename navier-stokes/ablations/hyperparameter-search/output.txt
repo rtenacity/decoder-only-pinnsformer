@@ -1,0 +1,4 @@
+nohup: ignoring input
+[I 2025-08-22 03:48:39,417] A new study created in memory with name: no-name-9d6f79c6-c90d-40ef-9850-562c01bdbc60
+/home/ubuntu/decoder-only-pinnsformer/navier-stokes/ablations/hyperparameter-search/ns-pinn-optimized.py:99: FutureWarning: `nn.init.xavier_uniform` is now deprecated in favor of `nn.init.xavier_uniform_`.
+  torch.nn.init.xavier_uniform(m.weight)
