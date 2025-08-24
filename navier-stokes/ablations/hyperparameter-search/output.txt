@@ -1,4 +1,219 @@
 nohup: ignoring input
-[I 2025-08-22 03:48:39,417] A new study created in memory with name: no-name-9d6f79c6-c90d-40ef-9850-562c01bdbc60
-/home/ubuntu/decoder-only-pinnsformer/navier-stokes/ablations/hyperparameter-search/ns-pinn-optimized.py:99: FutureWarning: `nn.init.xavier_uniform` is now deprecated in favor of `nn.init.xavier_uniform_`.
+[I 2025-08-22 12:22:17,071] A new study created in memory with name: no-name-ff85a6dc-7f50-48d2-b5aa-693169e528c8
+/home/ubuntu/pinns/navier-stokes/ablations/hyperparameter-search/ns-pinn-optimized.py:99: FutureWarning: `nn.init.xavier_uniform` is now deprecated in favor of `nn.init.xavier_uniform_`.
   torch.nn.init.xavier_uniform(m.weight)
+[I 2025-08-22 12:51:00,581] Trial 0 finished with value: 0.06102485343448061 and parameters: {'d_hidden': 512, 'num_layer': 6}. Best is trial 0 with value: 0.06102485343448061.
+/home/ubuntu/pinns/navier-stokes/ablations/hyperparameter-search/ns-pinn-optimized.py:99: FutureWarning: `nn.init.xavier_uniform` is now deprecated in favor of `nn.init.xavier_uniform_`.
+  torch.nn.init.xavier_uniform(m.weight)
+[I 2025-08-22 13:07:48,443] Trial 1 finished with value: 0.06410635944350122 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 0 with value: 0.06102485343448061.
+[I 2025-08-22 13:20:00,273] Trial 2 finished with value: 0.05779047944334494 and parameters: {'d_hidden': 256, 'num_layer': 4}. Best is trial 2 with value: 0.05779047944334494.
+[I 2025-08-22 13:32:00,068] Trial 3 finished with value: 0.06428490402059307 and parameters: {'d_hidden': 256, 'num_layer': 4}. Best is trial 2 with value: 0.05779047944334494.
+[I 2025-08-22 13:59:56,344] Trial 4 finished with value: 0.06031726880422936 and parameters: {'d_hidden': 768, 'num_layer': 4}. Best is trial 2 with value: 0.05779047944334494.
+[I 2025-08-22 14:17:20,385] Trial 5 finished with value: 0.06834270742604522 and parameters: {'d_hidden': 512, 'num_layer': 4}. Best is trial 2 with value: 0.05779047944334494.
+[I 2025-08-22 14:29:33,378] Trial 6 finished with value: 0.052858179493238136 and parameters: {'d_hidden': 256, 'num_layer': 4}. Best is trial 6 with value: 0.052858179493238136.
+[I 2025-08-22 14:41:42,907] Trial 7 finished with value: 0.07815574292504172 and parameters: {'d_hidden': 256, 'num_layer': 4}. Best is trial 6 with value: 0.052858179493238136.
+[I 2025-08-22 15:20:25,445] Trial 8 finished with value: 0.062308347463487415 and parameters: {'d_hidden': 768, 'num_layer': 5}. Best is trial 6 with value: 0.052858179493238136.
+[I 2025-08-22 15:48:29,189] Trial 9 finished with value: 0.06551474830710992 and parameters: {'d_hidden': 768, 'num_layer': 4}. Best is trial 6 with value: 0.052858179493238136.
+[I 2025-08-22 16:02:49,081] Trial 10 finished with value: 0.05009481359536643 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 10 with value: 0.05009481359536643.
+[I 2025-08-22 16:17:06,130] Trial 11 finished with value: 0.051504775852432245 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 10 with value: 0.05009481359536643.
+[I 2025-08-22 16:31:30,405] Trial 12 finished with value: 0.06131392103869502 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 10 with value: 0.05009481359536643.
+[I 2025-08-22 16:45:45,374] Trial 13 finished with value: 0.05477459148685761 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 10 with value: 0.05009481359536643.
+[I 2025-08-22 17:00:07,968] Trial 14 finished with value: 0.048489173386571584 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 14 with value: 0.048489173386571584.
+[I 2025-08-22 17:22:17,846] Trial 15 finished with value: 0.06074666188673221 and parameters: {'d_hidden': 512, 'num_layer': 5}. Best is trial 14 with value: 0.048489173386571584.
+[I 2025-08-22 17:38:57,671] Trial 16 finished with value: 0.046725878741097474 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 16 with value: 0.046725878741097474.
+[I 2025-08-22 17:55:28,533] Trial 17 finished with value: 0.05011932010607826 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 16 with value: 0.046725878741097474.
+[I 2025-08-22 18:45:29,754] Trial 18 finished with value: 0.06295918342682372 and parameters: {'d_hidden': 768, 'num_layer': 6}. Best is trial 16 with value: 0.046725878741097474.
+[I 2025-08-22 19:13:21,664] Trial 19 finished with value: 0.07016917208448256 and parameters: {'d_hidden': 512, 'num_layer': 6}. Best is trial 16 with value: 0.046725878741097474.
+[I 2025-08-22 19:30:09,964] Trial 20 finished with value: 0.05378406867356617 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 16 with value: 0.046725878741097474.
+[I 2025-08-22 19:44:19,794] Trial 21 finished with value: 0.06884311598170183 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 16 with value: 0.046725878741097474.
+[I 2025-08-22 19:58:46,001] Trial 22 finished with value: 0.06083852079447682 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 16 with value: 0.046725878741097474.
+[I 2025-08-22 20:13:09,770] Trial 23 finished with value: 0.0479988869634363 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 16 with value: 0.046725878741097474.
+[I 2025-08-22 20:27:39,398] Trial 24 finished with value: 0.06545226042024978 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 16 with value: 0.046725878741097474.
+[I 2025-08-22 20:42:00,887] Trial 25 finished with value: 0.06452655481932708 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 16 with value: 0.046725878741097474.
+[I 2025-08-22 20:56:13,367] Trial 26 finished with value: 0.04458338597355082 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-22 21:12:48,812] Trial 27 finished with value: 0.0469213097606678 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-22 21:41:00,677] Trial 28 finished with value: 0.05608093204591429 and parameters: {'d_hidden': 512, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-22 22:32:03,964] Trial 29 finished with value: 0.050859852514863864 and parameters: {'d_hidden': 768, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-22 23:00:00,610] Trial 30 finished with value: 0.05558841456716411 and parameters: {'d_hidden': 512, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-22 23:16:29,165] Trial 31 finished with value: 0.06567451195758105 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-22 23:33:16,083] Trial 32 finished with value: 0.055383815772803276 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-22 23:49:37,194] Trial 33 finished with value: 0.057841544868047566 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 00:06:13,369] Trial 34 finished with value: 0.04966796558002173 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 00:22:51,617] Trial 35 finished with value: 0.05346519727945431 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 00:39:28,996] Trial 36 finished with value: 0.0726652961808916 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 00:55:55,389] Trial 37 finished with value: 0.052854774813004955 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 01:12:26,995] Trial 38 finished with value: 0.06314745634202827 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 01:57:52,611] Trial 39 finished with value: 0.05650577421503069 and parameters: {'d_hidden': 768, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 02:12:13,629] Trial 40 finished with value: 0.07698918872494183 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 02:26:37,712] Trial 41 finished with value: 0.060659568822275974 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 02:40:46,394] Trial 42 finished with value: 0.05235562742679405 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 02:54:59,107] Trial 43 finished with value: 0.05110165877617828 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 03:07:02,785] Trial 44 finished with value: 0.046950487542139326 and parameters: {'d_hidden': 256, 'num_layer': 4}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 03:18:55,856] Trial 45 finished with value: 0.055285236813703176 and parameters: {'d_hidden': 256, 'num_layer': 4}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 03:31:08,351] Trial 46 finished with value: 0.055633686759864104 and parameters: {'d_hidden': 256, 'num_layer': 4}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 03:48:18,863] Trial 47 finished with value: 0.05693333610119982 and parameters: {'d_hidden': 512, 'num_layer': 4}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 04:16:23,097] Trial 48 finished with value: 0.07914304518930369 and parameters: {'d_hidden': 768, 'num_layer': 4}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 04:28:32,664] Trial 49 finished with value: 0.06023095084102751 and parameters: {'d_hidden': 256, 'num_layer': 4}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 04:45:20,874] Trial 50 finished with value: 0.05463067844711676 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 04:57:25,962] Trial 51 finished with value: 0.07464073899596793 and parameters: {'d_hidden': 256, 'num_layer': 4}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 05:14:08,019] Trial 52 finished with value: 0.057345617271701704 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 05:28:34,459] Trial 53 finished with value: 0.07820179168040163 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 05:40:43,644] Trial 54 finished with value: 0.07208700778811203 and parameters: {'d_hidden': 256, 'num_layer': 4}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 05:57:29,775] Trial 55 finished with value: 0.05671196674421078 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 06:11:43,734] Trial 56 finished with value: 0.05270181581630881 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 06:40:15,860] Trial 57 finished with value: 0.05894118687579276 and parameters: {'d_hidden': 512, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 07:18:57,593] Trial 58 finished with value: 0.049262869863345535 and parameters: {'d_hidden': 768, 'num_layer': 5}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 07:35:42,698] Trial 59 finished with value: 0.07010399192316916 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 07:47:51,169] Trial 60 finished with value: 0.05638202092233661 and parameters: {'d_hidden': 256, 'num_layer': 4}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 08:26:38,242] Trial 61 finished with value: 0.05527311525367628 and parameters: {'d_hidden': 768, 'num_layer': 5}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 09:05:16,428] Trial 62 finished with value: 0.069918592082837 and parameters: {'d_hidden': 768, 'num_layer': 5}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 09:43:21,952] Trial 63 finished with value: 0.06826247112309373 and parameters: {'d_hidden': 768, 'num_layer': 5}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 10:22:08,125] Trial 64 finished with value: 0.06367158917865293 and parameters: {'d_hidden': 768, 'num_layer': 5}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 11:01:03,372] Trial 65 finished with value: 0.07319664042533752 and parameters: {'d_hidden': 768, 'num_layer': 5}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 11:15:22,691] Trial 66 finished with value: 0.049988297947654824 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 11:29:45,538] Trial 67 finished with value: 0.057704109473016914 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 11:52:13,058] Trial 68 finished with value: 0.05492461699095104 and parameters: {'d_hidden': 512, 'num_layer': 5}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 12:42:12,593] Trial 69 finished with value: 0.06226651424180011 and parameters: {'d_hidden': 768, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 12:58:49,341] Trial 70 finished with value: 0.05050344636291577 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 13:15:36,591] Trial 71 finished with value: 0.06927500175402593 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 13:29:58,948] Trial 72 finished with value: 0.07450881843320334 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 13:46:29,810] Trial 73 finished with value: 0.06252444133570781 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 14:03:12,679] Trial 74 finished with value: 0.05763995329762233 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 14:20:09,216] Trial 75 finished with value: 0.06724448055374754 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 14:37:05,805] Trial 76 finished with value: 0.04976231489729806 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 14:51:17,077] Trial 77 finished with value: 0.05452306495123804 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 15:05:39,859] Trial 78 finished with value: 0.061663585597993245 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 15:20:44,925] Trial 79 finished with value: 0.06456721182195892 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 16:11:20,418] Trial 80 finished with value: 0.0688663897985687 and parameters: {'d_hidden': 768, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 16:28:02,999] Trial 81 finished with value: 0.06662770699418454 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 16:44:40,098] Trial 82 finished with value: 0.047791704656083574 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 17:01:27,937] Trial 83 finished with value: 0.04598250894333167 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 17:18:09,539] Trial 84 finished with value: 0.05157145794086129 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 17:34:53,908] Trial 85 finished with value: 0.0677843456212029 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 17:51:29,661] Trial 86 finished with value: 0.07067538357788074 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 18:19:20,582] Trial 87 finished with value: 0.08171720409943428 and parameters: {'d_hidden': 512, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 18:33:45,771] Trial 88 finished with value: 0.06333297063749876 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 18:48:09,311] Trial 89 finished with value: 0.04741944389828491 and parameters: {'d_hidden': 256, 'num_layer': 5}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 19:04:54,311] Trial 90 finished with value: 0.04471641251705756 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 19:21:28,874] Trial 91 finished with value: 0.048322950385568615 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 19:38:11,572] Trial 92 finished with value: 0.05583682114169992 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 19:54:37,581] Trial 93 finished with value: 0.07012366505774792 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 20:11:17,580] Trial 94 finished with value: 0.05299521837847077 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 20:27:52,976] Trial 95 finished with value: 0.05149226025608047 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 20:44:26,224] Trial 96 finished with value: 0.054071772060692455 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 21:01:14,079] Trial 97 finished with value: 0.05217855411648382 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 21:18:01,217] Trial 98 finished with value: 0.04736525102337546 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+[I 2025-08-23 21:34:43,686] Trial 99 finished with value: 0.05298642859187702 and parameters: {'d_hidden': 256, 'num_layer': 6}. Best is trial 26 with value: 0.04458338597355082.
+cuda
+Optimal constant C to add: 0.03600294164820229
+New best model found with RL1: 0.06102485343448061
+Optimal constant C to add: -0.22534147433554166
+Optimal constant C to add: -0.3460439597927907
+New best model found with RL1: 0.05779047944334494
+Optimal constant C to add: 0.24757356034806585
+Optimal constant C to add: -0.3084369762727
+Optimal constant C to add: 0.8705205043106398
+Optimal constant C to add: -0.7492660694212595
+New best model found with RL1: 0.052858179493238136
+Optimal constant C to add: -0.2833366712198534
+Optimal constant C to add: 0.39838900162866925
+Optimal constant C to add: 0.39348108842066143
+Optimal constant C to add: -0.9351050875157991
+New best model found with RL1: 0.05009481359536643
+Optimal constant C to add: -1.8416619962305705
+Optimal constant C to add: -0.325072908266721
+Optimal constant C to add: -0.545473188934935
+Optimal constant C to add: -0.8169903653652348
+New best model found with RL1: 0.048489173386571584
+Optimal constant C to add: -0.050072311573190344
+Optimal constant C to add: -1.523590076002566
+New best model found with RL1: 0.046725878741097474
+Optimal constant C to add: -1.1028272626371065
+Optimal constant C to add: -0.25307685225763704
+Optimal constant C to add: 0.11912877728632307
+Optimal constant C to add: -1.6474865928740183
+Optimal constant C to add: -1.942514306983439
+Optimal constant C to add: -1.952366474542109
+Optimal constant C to add: -0.0736324415338167
+Optimal constant C to add: -0.8520360438675562
+Optimal constant C to add: -0.3106410436444857
+Optimal constant C to add: -0.7394633194775262
+New best model found with RL1: 0.04458338597355082
+Optimal constant C to add: -0.6202934126720705
+Optimal constant C to add: -0.6002365934596339
+Optimal constant C to add: -1.1426212423414865
+Optimal constant C to add: 0.13259103414109563
+Optimal constant C to add: -0.10785206290864731
+Optimal constant C to add: -0.42897926419758586
+Optimal constant C to add: -1.0849156531662623
+Optimal constant C to add: -0.39205100039289675
+Optimal constant C to add: -1.2074339116067567
+Optimal constant C to add: -0.5137002840642759
+Optimal constant C to add: -0.6517712149442115
+Optimal constant C to add: 0.6190438127546629
+Optimal constant C to add: -1.26184120558211
+Optimal constant C to add: -0.35867396547654057
+Optimal constant C to add: -2.5495168037027995
+Optimal constant C to add: -0.790581122747151
+Optimal constant C to add: -0.4517244580012688
+Optimal constant C to add: 1.6521389152436576
+Optimal constant C to add: -0.50488939454676
+Optimal constant C to add: 0.5575055397897085
+Optimal constant C to add: -0.5924087679863849
+Optimal constant C to add: -0.03448588024088527
+Optimal constant C to add: -2.016564358481852
+Optimal constant C to add: -0.1837874462769308
+Optimal constant C to add: -0.05417538276584232
+Optimal constant C to add: -0.33986466335290455
+Optimal constant C to add: -0.459795953177748
+Optimal constant C to add: -0.729744859555451
+Optimal constant C to add: -0.676692790821282
+Optimal constant C to add: -1.5783678829283396
+Optimal constant C to add: -0.39981831802548257
+Optimal constant C to add: -0.7988999960930029
+Optimal constant C to add: -0.4205820582644024
+Optimal constant C to add: 0.18957960042050695
+Optimal constant C to add: -0.03391078113996769
+Optimal constant C to add: -0.3469998351392278
+Optimal constant C to add: -0.61366463756421
+Optimal constant C to add: -0.7303774911374726
+Optimal constant C to add: -0.24759017160916114
+Optimal constant C to add: -0.5408662837942073
+Optimal constant C to add: 0.2304286086737237
+Optimal constant C to add: 0.10223085174402809
+Optimal constant C to add: -0.20816428303764548
+Optimal constant C to add: -0.8166698762864747
+Optimal constant C to add: -1.7676867698282877
+Optimal constant C to add: -0.22347001846478665
+Optimal constant C to add: -0.12830415069059814
+Optimal constant C to add: -0.6913122173012176
+Optimal constant C to add: -0.03404829454710121
+Optimal constant C to add: -0.2718112949916103
+Optimal constant C to add: -0.9532816623003164
+Optimal constant C to add: -0.6613596986458579
+Optimal constant C to add: 0.5016517923264823
+Optimal constant C to add: -0.4297660186123976
+Optimal constant C to add: -0.6230486933425942
+Optimal constant C to add: -0.5336035671711841
+Optimal constant C to add: -2.2863579191059746
+Optimal constant C to add: -0.3013035430920251
+Optimal constant C to add: -0.0013463377890118443
+Optimal constant C to add: -1.3425988236756006
+Optimal constant C to add: -0.4322089085922518
+Optimal constant C to add: -0.3181045955375709
+Optimal constant C to add: -0.4970570480094233
+Optimal constant C to add: -0.3228996560984232
+Optimal constant C to add: 0.18739308074406003
+Optimal constant C to add: -0.8706117003531137
+Optimal constant C to add: -0.5852163944930712
+Optimal constant C to add: -0.6738754384905973
+Optimal constant C to add: -0.1879094308749714
+Optimal constant C to add: -0.7818742018283287
+Optimal constant C to add: -1.1269419288487115
+Optimal constant C to add: -0.6685071950376907
+Optimal constant C to add: 0.21883457541457033
+Best trial:
+  Value: 0.04458338597355082
+  Params:
+    d_hidden: 256
+    num_layer: 6

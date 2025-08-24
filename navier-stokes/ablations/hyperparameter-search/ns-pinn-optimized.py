@@ -24,6 +24,8 @@ X_star = data['X_star'] # N x 2
 N = X_star.shape[0]
 T = t_star.shape[0]
 
+
+
 # Rearrange Data 
 XX = np.tile(X_star[:,0:1], (1,T)) # N x T
 YY = np.tile(X_star[:,1:2], (1,T)) # N x T
@@ -69,8 +71,6 @@ t_star = torch.tensor(t_star, dtype=torch.float32, requires_grad=True).to(device
 
 
 smallest_rl1 = 1e10
-
-print(device)
 
 
 class PINNs(nn.Module):
@@ -186,10 +186,12 @@ def objective(trial):
     if rl1 < smallest_rl1:
         smallest_rl1 = rl1
         print(f"New best model found with RL1: {smallest_rl1}")
-        torch.save(model.state_dict(), f'saves/ns-pinn-{trial.number}.pth')
+        torch.save(model.state_dict(), f'saves/conv-pinn-{trial.number}.pth')
         
     return rl1
 
+
+print(device)
 
 study = optuna.create_study(direction='minimize')
 study.optimize(objective, n_trials=100)
@@ -200,3 +202,5 @@ print(f'  Value: {trial.value}')
 print('  Params:')
 for key, val in trial.params.items():
     print(f'    {key}: {val}')
+    
+    
